@@ -12,19 +12,22 @@ void UGSCAbilitySystemComponent::GiveStartingAbilities()
 {
 	for (TSubclassOf<UGameplayAbility>& Ability : StartingAbilities)
 	{
-		GiveAbility(FGameplayAbilitySpec(Ability));
+		if (Ability)
+		{
+			GiveAbility(FGameplayAbilitySpec(Ability, 1, INDEX_NONE, GetOwner()));			
+		}
 	}
 }
 
 void UGSCAbilitySystemComponent::GiveDefaultAttribute()
 {
-	FGameplayAbilitySpecHandle EffectContext = MakeEffectContext();
+	FGameplayEffectContextHandle EffectContext = MakeEffectContext();
 	EffectContext.AddSourceObject(GetOwner());
 
-	const FGameplayEffectSpecHandle NewHandle = MakeOutgoingSpec(DefaultAttribute, 1, EffectContext);
+	const FGameplayEffectSpecHandle NewHandle = MakeOutgoingSpec(StartingAttribute, 1, EffectContext);
 	if (NewHandle.IsValid())
 	{
-		FActiveGameplayEffectHandle ActiveGEHandle = ApplyGameplayEffectSpecToSelf(*NewHandle.Get());
+		ApplyGameplayEffectSpecToSelf(*NewHandle.Data.Get());
 	}
 }
 

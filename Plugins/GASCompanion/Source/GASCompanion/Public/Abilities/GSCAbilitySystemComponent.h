@@ -25,8 +25,10 @@ public:
 
 protected:
 	/** Starting abilities */
+	UPROPERTY(EditDefaultsOnly, Category = Abilities)
 	TArray<TSubclassOf<UGameplayAbility>> StartingAbilities;
 
 	/** Default attributes for a character for initializing on spawn/respawn. */
-	TSubclassOf<UGameplayEffect> DefaultAttribute;
+	UPROPERTY(EditDefaultsOnly, Category = Abilities)
+	TSubclassOf<UGameplayEffect> StartingAttribute;
 };

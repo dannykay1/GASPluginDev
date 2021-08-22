@@ -8,6 +8,7 @@
 #include "GSCCharacter.generated.h"
 
 class UGSCAbilitySystemComponent;
+class UGSCAttributeSet;
 
 /**
  * Base class for any character that needs to implement the Gameplay Ability System.
@@ -27,12 +28,30 @@ public:
 	// Implement IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = Attributes)
+	virtual bool IsAlive() const;
+
+	UFUNCTION(BlueprintCallable, Category = Attributes)
+	float GetHealth() const;
+
+	UFUNCTION(BlueprintCallable, Category = Attributes)
+	float GetMaxHealth() const;
+
+	UFUNCTION(BlueprintCallable, Category = Attributes)
+	float GetArmor() const;
+
+	UFUNCTION(BlueprintCallable, Category = Attributes)
+	float GetMaxArmor() const;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Components)
 	UGSCAbilitySystemComponent* AbilitySystemComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Components)
+	UGSCAttributeSet* AttributeSet;
 
 public:	
 	// Called every frame

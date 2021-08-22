@@ -3,6 +3,7 @@
 
 #include "Pawns/GSCCharacter.h"
 #include "Abilities/GSCAbilitySystemComponent.h"
+#include "Abilities/GSCAttributeSet.h"
 
 // Sets default values
 AGSCCharacter::AGSCCharacter()
@@ -11,6 +12,7 @@ AGSCCharacter::AGSCCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AbilitySystemComponent = CreateDefaultSubobject<UGSCAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AttributeSet = CreateDefaultSubobject<UGSCAttributeSet>(TEXT("AttributeSet"));
 }
 
 void AGSCCharacter::PossessedBy(AController* NewController)
@@ -46,5 +48,30 @@ void AGSCCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+bool AGSCCharacter::IsAlive() const
+{
+	return GetHealth() > 0.0f;
+}
+
+float AGSCCharacter::GetHealth() const
+{
+	return IsValid(AttributeSet) ? AttributeSet->GetHealth() : 0.0f;
+}
+
+float AGSCCharacter::GetMaxHealth() const
+{
+	return IsValid(AttributeSet) ? AttributeSet->GetMaxHealth() : 0.0f;
+}
+
+float AGSCCharacter::GetArmor() const
+{
+	return IsValid(AttributeSet) ? AttributeSet->GetArmor() : 0.0f;
+}
+
+float AGSCCharacter::GetMaxArmor() const
+{
+	return IsValid(AttributeSet) ? AttributeSet->GetMaxArmor() : 0.0f;
 }
 
