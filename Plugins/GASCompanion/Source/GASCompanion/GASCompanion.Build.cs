@@ -40,7 +40,9 @@ public class GASCompanion : ModuleRules
 				"SlateCore",
 				"GameplayAbilities", 
 				"GameplayTags", 
-				"GameplayTasks"
+				"GameplayTasks",
+				"AIModule",
+				"UMG"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

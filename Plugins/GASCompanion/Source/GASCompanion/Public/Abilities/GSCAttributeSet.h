@@ -21,6 +21,9 @@ class GASCOMPANION_API UGSCAttributeSet : public UAttributeSet
 	GENERATED_BODY()
 
 public:
+	/** Initialize default attribute values */
+	UGSCAttributeSet();
+	
 	// Current Health, when 0 we expect owner to die unless prevented by an ability. Capped by MaxHealth.
 	// Positive changes can directly use this.
 	// Negative changes to Health should go through Damage meta attribute.

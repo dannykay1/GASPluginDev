@@ -7,6 +7,13 @@
 #include "GameplayEffectExtension.h"
 #include "Pawns/GSCCharacter.h"
 
+UGSCAttributeSet::UGSCAttributeSet()
+{
+	MaxHealth = Health = 100.f;
+	MaxArmor = 100.f;
+	Armor = 0.f;	
+}
+
 void UGSCAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	Super::PreAttributeChange(Attribute, NewValue);
