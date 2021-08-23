@@ -26,6 +26,9 @@ public class GASCompanion : ModuleRules
 			new string[]
 			{
 				"Core",
+				"GameplayAbilities", 
+				"GameplayTags", 
+				"GameplayTasks"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -38,9 +41,6 @@ public class GASCompanion : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"GameplayAbilities", 
-				"GameplayTags", 
-				"GameplayTasks",
 				"AIModule",
 				"UMG"
 				// ... add private dependencies that you statically link with here ...	
